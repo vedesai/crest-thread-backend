@@ -1,0 +1,20 @@
+# AI Generated Code by Deloitte + Cursor (BEGIN)
+version: 0.2
+phases:
+  pre_build:
+    commands:
+      - echo Installing dependencies...
+      - echo Checking Java version...
+      - java -version
+  build:
+    commands:
+      - echo Building application...
+      - mvn clean package -DskipTests
+  post_build:
+    commands:
+      - echo Build completed successfully
+artifacts:
+  files:
+    - target/*.jar
+    - '**/*'
+# AI Generated Code by Deloitte + Cursor (END)
