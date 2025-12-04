@@ -15,10 +15,19 @@ import java.util.Optional;
 @Repository
 public interface CategoryRepository extends JpaRepository<Category, Long> {
 
+    /**
+     * Find category by slug
+     */
     Optional<Category> findBySlug(String slug);
 
+    /**
+     * Find all active categories ordered by display order
+     */
     List<Category> findByActiveTrueOrderByDisplayOrderAsc();
 
+    /**
+     * Check if category exists by slug
+     */
     boolean existsBySlug(String slug);
 }
 // AI Generated Code by Deloitte + Cursor (END)

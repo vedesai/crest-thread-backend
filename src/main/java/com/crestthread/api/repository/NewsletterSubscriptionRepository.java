@@ -14,8 +14,14 @@ import java.util.Optional;
 @Repository
 public interface NewsletterSubscriptionRepository extends JpaRepository<NewsletterSubscription, Long> {
 
+    /**
+     * Find subscription by email
+     */
     Optional<NewsletterSubscription> findByEmail(String email);
 
+    /**
+     * Check if email already subscribed
+     */
     boolean existsByEmail(String email);
 }
 // AI Generated Code by Deloitte + Cursor (END)

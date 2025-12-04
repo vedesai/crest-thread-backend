@@ -18,17 +18,32 @@ import java.util.List;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
+    /**
+     * Find all featured products
+     */
     List<Product> findByFeaturedTrueAndInStockTrue();
 
+    /**
+     * Find products by category
+     */
     Page<Product> findByCategoryId(Long categoryId, Pageable pageable);
 
+    /**
+     * Find products by category slug
+     */
     @Query("SELECT p FROM Product p WHERE p.category.slug = :slug AND p.inStock = true")
     Page<Product> findByCategorySlug(@Param("slug") String slug, Pageable pageable);
 
+    /**
+     * Search products by name or description
+     */
     @Query("SELECT p FROM Product p WHERE LOWER(p.name) LIKE LOWER(CONCAT('%', :query, '%')) " +
            "OR LOWER(p.description) LIKE LOWER(CONCAT('%', :query, '%'))")
     Page<Product> searchProducts(@Param("query") String query, Pageable pageable);
 
+    /**
+     * Find products in stock
+     */
     Page<Product> findByInStockTrue(Pageable pageable);
 }
 // AI Generated Code by Deloitte + Cursor (END)
