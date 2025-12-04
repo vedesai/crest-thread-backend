@@ -7,6 +7,10 @@ import lombok.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+/**
+ * Product entity representing items in the store
+ * Follows Data Modelling Standards - proper constraints, relationships
+ */
 @Entity
 @Table(name = "products", indexes = {
     @Index(name = "idx_product_category", columnList = "category_id"),

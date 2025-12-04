@@ -8,6 +8,10 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Category entity for product categorization
+ * Follows Data Modelling Standards - proper constraints, relationships
+ */
 @Entity
 @Table(name = "categories", indexes = {
     @Index(name = "idx_category_slug", columnList = "slug", unique = true)

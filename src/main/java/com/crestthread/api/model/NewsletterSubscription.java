@@ -6,6 +6,10 @@ import jakarta.validation.constraints.*;
 import lombok.*;
 import java.time.LocalDateTime;
 
+/**
+ * Newsletter subscription entity
+ * Follows Data Modelling Standards - proper constraints
+ */
 @Entity
 @Table(name = "newsletter_subscriptions", indexes = {
     @Index(name = "idx_newsletter_email", columnList = "email", unique = true)
