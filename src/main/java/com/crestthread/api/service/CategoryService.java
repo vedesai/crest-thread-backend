@@ -25,6 +25,9 @@ public class CategoryService {
 
     private final CategoryRepository categoryRepository;
 
+    /**
+     * Get all active categories
+     */
     public List<CategoryDTO> getAllCategories() {
         log.debug("Fetching all active categories");
         return categoryRepository.findByActiveTrueOrderByDisplayOrderAsc()
@@ -33,18 +36,27 @@ public class CategoryService {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Get category by ID
+     */
     public Optional<CategoryDTO> getCategoryById(Long id) {
         log.debug("Fetching category by ID: {}", id);
         return categoryRepository.findById(id)
                 .map(this::mapToDTO);
     }
 
+    /**
+     * Get category by slug
+     */
     public Optional<CategoryDTO> getCategoryBySlug(String slug) {
         log.debug("Fetching category by slug: {}", slug);
         return categoryRepository.findBySlug(slug)
                 .map(this::mapToDTO);
     }
 
+    /**
+     * Map Category entity to DTO
+     */
     private CategoryDTO mapToDTO(Category category) {
         return CategoryDTO.builder()
                 .id(category.getId())

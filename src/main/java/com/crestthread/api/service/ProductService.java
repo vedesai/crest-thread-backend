@@ -27,18 +27,27 @@ public class ProductService {
 
     private final ProductRepository productRepository;
 
+    /**
+     * Get all products with pagination
+     */
     public Page<ProductDTO> getAllProducts(Pageable pageable) {
         log.debug("Fetching all products with pagination");
         return productRepository.findByInStockTrue(pageable)
                 .map(this::mapToDTO);
     }
 
+    /**
+     * Get product by ID
+     */
     public Optional<ProductDTO> getProductById(Long id) {
         log.debug("Fetching product by ID: {}", id);
         return productRepository.findById(id)
                 .map(this::mapToDTO);
     }
 
+    /**
+     * Get featured products
+     */
     public List<ProductDTO> getFeaturedProducts() {
         log.debug("Fetching featured products");
         return productRepository.findByFeaturedTrueAndInStockTrue()
@@ -47,24 +56,36 @@ public class ProductService {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Get products by category
+     */
     public Page<ProductDTO> getProductsByCategory(Long categoryId, Pageable pageable) {
         log.debug("Fetching products by category ID: {}", categoryId);
         return productRepository.findByCategoryId(categoryId, pageable)
                 .map(this::mapToDTO);
     }
 
+    /**
+     * Get products by category slug
+     */
     public Page<ProductDTO> getProductsByCategorySlug(String slug, Pageable pageable) {
         log.debug("Fetching products by category slug: {}", slug);
         return productRepository.findByCategorySlug(slug, pageable)
                 .map(this::mapToDTO);
     }
 
+    /**
+     * Search products
+     */
     public Page<ProductDTO> searchProducts(String query, Pageable pageable) {
         log.debug("Searching products with query: {}", query);
         return productRepository.searchProducts(query, pageable)
                 .map(this::mapToDTO);
     }
 
+    /**
+     * Map Product entity to DTO
+     */
     private ProductDTO mapToDTO(Product product) {
         return ProductDTO.builder()
                 .id(product.getId())

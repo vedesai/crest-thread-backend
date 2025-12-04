@@ -21,6 +21,9 @@ public class NewsletterService {
 
     private final NewsletterSubscriptionRepository subscriptionRepository;
 
+    /**
+     * Subscribe to newsletter
+     */
     @Transactional
     public void subscribe(NewsletterSubscriptionDTO subscriptionDTO) {
         String email = subscriptionDTO.getEmail().toLowerCase().trim();
@@ -40,6 +43,9 @@ public class NewsletterService {
         log.info("Successfully subscribed email: {}", email);
     }
 
+    /**
+     * Unsubscribe from newsletter
+     */
     @Transactional
     public void unsubscribe(String email) {
         log.debug("Processing newsletter unsubscription for email: {}", email);
