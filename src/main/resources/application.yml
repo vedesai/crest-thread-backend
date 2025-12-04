@@ -3,12 +3,14 @@ spring:
   application:
     name: crest-thread-api
   
+  # Database Configuration
   datasource:
     url: jdbc:h2:mem:crestthread;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
     driver-class-name: org.h2.Driver
     username: sa
     password: 
   
+  # JPA Configuration
   jpa:
     hibernate:
       ddl-auto: create-drop
@@ -18,16 +20,19 @@ spring:
         format_sql: true
         dialect: org.hibernate.dialect.H2Dialect
   
+  # H2 Console (for development)
   h2:
     console:
       enabled: true
       path: /h2-console
 
+# Server Configuration
 server:
   port: 8080
   servlet:
     context-path: /
 
+# CORS Configuration
 cors:
   allowed-origins:
     - http://localhost:3000
@@ -46,6 +51,7 @@ cors:
     - X-Requested-With
   allow-credentials: true
 
+# Actuator Configuration
 management:
   endpoints:
     web:
@@ -55,6 +61,7 @@ management:
     health:
       show-details: when_authorized
 
+# Logging Configuration
 logging:
   level:
     root: INFO
@@ -62,6 +69,7 @@ logging:
     org.springframework.web: INFO
     org.hibernate: WARN
 
+# API Documentation
 springdoc:
   api-docs:
     path: /api-docs
